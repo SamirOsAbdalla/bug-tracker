@@ -14,7 +14,7 @@
     position: fixed;
     display: flex;
     flex-direction: column;
-    gap: 4em;
+    gap: 6em;
     padding: 10px 14px;
     align-items: center;
 }
@@ -75,7 +75,6 @@
     border-radius: 6px;
     border-width: 0;
     box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .1) 0 2px 5px 0, rgba(0, 0, 0, .07) 0 1px 1px 0;
-    box-sizing: border-box;
     color: #fff;
     cursor: pointer;
     font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
@@ -98,8 +97,70 @@
     background-color: rgb(91, 7, 194);
 }
 
+.sidebar__hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.sidebar__bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px;
+    transition: all 0.3s ease-in-out;
+    background-color: rgb(0, 0, 0);
+}
+
+
 @media screen and (max-width:700px) {
-    .sidebar__welcome {
+
+
+    .special__toggle {
+        transition: all 0.15s ease-in-out;
+    }
+
+    .sidebar__hamburger {
+        display: block;
+    }
+
+    .sidebar__hamburger.active .sidebar__bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .sidebar__hamburger.active .sidebar__bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg)
+    }
+
+    .sidebar__hamburger.active .sidebar__bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg)
+    }
+
+    .sidebar__wrapper {
+        gap: 4em;
+    }
+
+    .welcome__toggle {
         display: none;
+    }
+
+    .wrapper__toggle {
+        transition: all 0.3s ease-in-out;
+        width: 70px;
+    }
+
+    .text__toggle {
+        display: none;
+    }
+
+    .login__toggle {
+        width: 60px;
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .icon__toggle {
+        font-size: 30px;
     }
 }
