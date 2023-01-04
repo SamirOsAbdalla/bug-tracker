@@ -1,10 +1,18 @@
 import React from 'react';
+import { Sidebar } from "./components/Sidebar/Sidebar"
+import { Routes, Route, BrowserRouter } from "react-router-dom"
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
+      <div className="App">
+        <Sidebar />
+      </div>
+      <Routes>
 
-    </div>
+      </Routes>
+    </BrowserRouter>
+
   );
 }
 
