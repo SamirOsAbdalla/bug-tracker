@@ -6,7 +6,6 @@
         "sourceMap": true,
         "outDir": "dist",
         "esModuleInterop": true,
-        "rootDir": "src",
         "resolveJsonModule": true
     },
     "ts-node": {
