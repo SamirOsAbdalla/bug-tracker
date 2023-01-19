@@ -55,9 +55,11 @@ export const Sidebar = () => {
                     </NavLink>
                 </ul>
             </div>
-            <button className="sidebar__login login__toggle toggle">
-                Login
-            </button>
+            <NavLink to="/login">
+                <button className="sidebar__login login__toggle toggle">
+                    Login
+                </button>
+            </NavLink>
         </nav>
     )
 }
