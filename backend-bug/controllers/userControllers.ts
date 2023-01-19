@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import UserModel from "../models/userModels.js"
+import UserModel from "../models/userModel.js"
 import asyncHandler from "express-async-handler"
 import generateToken from "../utils/generateToken.js"
 

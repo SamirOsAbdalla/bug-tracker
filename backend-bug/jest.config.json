@@ -1,6 +1,0 @@
-{
-  "transformIgnorePatterns": [
-    "node_modules/(?!(npm-package|names|go-here)/)"
-  ],
-  "preset": "@shelf/jest-mongodb"
-}

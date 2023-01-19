@@ -13,5 +13,12 @@
     },
     "include": [
         "src/**/*"
+    ],
+    "types": [
+        "@types/jest",
+        "node"
+    ],
+    "exclude": [
+        "**/tests/*.test.ts"
     ]
 }

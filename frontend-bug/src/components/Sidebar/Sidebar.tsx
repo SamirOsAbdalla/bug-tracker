@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Sidebar.css"
 import { NavLink } from 'react-router-dom'
-import { MdOutlineDashboard } from "react-icons/md"
+import { RxDashboard } from "react-icons/rx"
 import { AiOutlineProject } from "react-icons/ai"
 import { IoTicketOutline } from "react-icons/io5"
 export const Sidebar = () => {
@@ -42,7 +42,7 @@ export const Sidebar = () => {
             <div className="sidebar__links">
                 <ul className="sidebar__list">
                     <NavLink className="sidebar__link" to="/dashboard">
-                        <MdOutlineDashboard className="sidebar__icon icon__toggle toggle" />
+                        <RxDashboard className="sidebar__icon icon__toggle toggle" />
                         <span className="sidebar__text text__toggle toggle">Dashboard</span>
                     </NavLink>
                     <NavLink className="sidebar__link" to="/dashboard">
