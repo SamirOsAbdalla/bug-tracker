@@ -10,7 +10,8 @@ function App() {
         <Sidebar />
       </div> */}
       <Routes>
-        <Route path="login" element={<LoginPage />} />
+        <Route path="login" element={<LoginPage formType='login' />} />
+        <Route path="signup" element={<LoginPage formType='signup' />} />
       </Routes>
     </BrowserRouter>
 
