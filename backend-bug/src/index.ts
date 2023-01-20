@@ -3,10 +3,12 @@ import dotenv from "dotenv"
 import connectDB from "../config/db.js"
 import userRoutes from "../routes/userRoutes.js"
 import { notFound, errorHandler } from "../middlewares/errorMiddleware.js"
+import cors from "cors"
 
 const app = express();
 dotenv.config()
 connectDB()
+app.use(cors())
 app.use(express.json())
 
 app.use("/api/users", userRoutes)

@@ -34,6 +34,7 @@
   "dependencies": {
     "@types/nodemon": "^1.19.2",
     "babel-jest": "^29.3.1",
+    "cors": "^2.8.5",
     "mongodb-memory-server": "^8.11.0"
   }
 }
