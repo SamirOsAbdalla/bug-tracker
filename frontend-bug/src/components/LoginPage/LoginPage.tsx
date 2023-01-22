@@ -5,13 +5,27 @@ import { FiLock } from "react-icons/fi"
 import { AiOutlineMail } from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
+import { registerUser, loginUser } from '../../services/userAuthentication'
+import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner'
+import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
+import { UserInfoType } from '../../interfaces/interfaces'
+import { setLoginStatus } from '../../slices/loginStatusSlice'
+import { useAppDispatch } from '../../app/hooks'
+import { setCurrentUser } from '../../slices/userSlice'
 
 interface PropType {
     formType: string
 }
 
-const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+interface UserLoginType {
+    email: string,
+    name?: string,
+    password: string
+}
+
+interface errorType {
+    error: boolean,
+    message: string
 }
 
 
@@ -22,6 +36,33 @@ export const LoginPage = (props: PropType) => {
     const [firstName, setFirstName] = useState<string>("")
     const [lastName, setLastName] = useState<string>("")
     const [password, setPassword] = useState<string>("")
+    const [loading, setLoading] = useState<boolean>(false)
+    const [error, setError] = useState<string>("")
+    const dispatch = useAppDispatch()
+
+    const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const userInfo: UserLoginType = { email: email, password: password }
+
+        let response: errorType | UserInfoType;
+
+        setLoading(true)
+        if (props.formType === "signup") {
+            userInfo.name = firstName + " " + lastName
+            response = await registerUser(userInfo)
+        } else {
+            response = await loginUser(userInfo)
+        }
+
+        setLoading(false)
+        if ("error" in response) {
+            setError(response.message)
+        } else {
+            setError("")
+            dispatch(setLoginStatus({ isUserLoggedIn: true }))
+            dispatch(setCurrentUser(response))
+        }
+    }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
         switch (type) {
@@ -46,10 +87,31 @@ export const LoginPage = (props: PropType) => {
         }
     }
 
+    const handleDemoClick = async (e: React.MouseEvent<HTMLButtonElement>, demoType: string) => {
+        let response: errorType | UserInfoType;
+        setLoading(true)
+        if (demoType === "admin") {
+            response = await loginUser({ email: "testadmin@gmail.com", password: "password" })
+        } else {
+            response = await loginUser({ email: "testuser@gmail.com", password: "password" })
+        }
+        setLoading(false)
+        if ("error" in response) {
+            setError(response.message)
+        } else {
+            setError("")
+            dispatch(setLoginStatus({ isUserLoggedIn: true }))
+            dispatch(setCurrentUser(response))
+        }
+    }
     return (
         <div className='login__wrapper'>
             <div className='login__box'>
                 <form onSubmit={handleFormSubmit} className="login__form">
+                    {error !== "" ?
+                        <ErrorMessage message={error} /> :
+                        <></>
+                    }
                     <div className="login__header__icon__container">
                         <BsPerson className="login__header__icon" />
                     </div>
@@ -59,6 +121,8 @@ export const LoginPage = (props: PropType) => {
                             "Signup for an account"
                         }
                     </div>
+
+                    {loading === true ? <LoadingSpinner /> : <></>}
                     {props.formType !== "login" ?
                         <div className="name__fields">
                             <div className="input__box">
@@ -116,30 +180,30 @@ export const LoginPage = (props: PropType) => {
                     {props.formType === "login" ?
                         <div className="signup__memo">
                             <div>Don't have an account?</div>
-                            <NavLink to="/signup">
+                            <NavLink onClick={() => setError("")} to="/signup">
                                 Signup now
                             </NavLink>
                         </div> :
                         <div className="signup__memo">
                             <div>Already have an account?</div>
-                            <NavLink to="/login">
+                            <NavLink onClick={() => setError("")} to="/login">
                                 Login now
                             </NavLink>
                         </div>
                     }
                     {props.formType === "login" ?
                         <div className="demo__buttons">
-                            <button className="demo__button">
+                            <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleDemoClick(e, "admin")} className="demo__button">
                                 Demo Admin
                             </button>
-                            <button className="demo__button">
+                            <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleDemoClick(e, "user")} className="demo__button">
                                 Demo User
                             </button>
                         </div> :
                         <></>
                     }
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }

@@ -1,0 +1,35 @@
+.error__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    background-color: #fde4e4;
+    padding: 10px 30px;
+    margin-bottom: 20px;
+}
+
+.error__header {
+    font-family: "Avenir";
+    font-weight: bold;
+    color: #cd041a;
+}
+
+.error__icon {
+    width: 25px;
+    height: 25px;
+    color: #cd041a;
+}
+
+.message__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+}
+
+.error__message {
+    font-size: 15px;
+    color: #cd041a;
+    font-family: "Avenir";
+    text-align: center;
+}

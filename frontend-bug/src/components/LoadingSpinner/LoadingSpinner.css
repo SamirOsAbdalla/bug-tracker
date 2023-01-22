@@ -1,0 +1,21 @@
+.loading__wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.loading__wrapper::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    background: rgb(251, 251, 251);
+    border: 5px solid rgb(202, 201, 201);
+    border-top-color: rgb(99, 136, 152);
+    border-radius: 50%;
+    animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(1turn);
+    }
+}
