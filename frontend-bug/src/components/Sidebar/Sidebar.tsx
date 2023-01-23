@@ -23,6 +23,8 @@ export const Sidebar = () => {
         })
         login.classList.toggle("login__toggle")
     }
+
+
     return (
         <nav className="sidebar__wrapper wrapper__toggle special__toggle">
             <div onClick={handleSidebarChange} className="sidebar__hamburger">

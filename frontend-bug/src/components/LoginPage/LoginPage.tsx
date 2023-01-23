@@ -12,6 +12,7 @@ import { UserInfoType } from '../../interfaces/interfaces'
 import { setLoginStatus } from '../../slices/loginStatusSlice'
 import { useAppDispatch } from '../../app/hooks'
 import { setCurrentUser } from '../../slices/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 interface PropType {
     formType: string
@@ -39,6 +40,7 @@ export const LoginPage = (props: PropType) => {
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>("")
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -61,6 +63,7 @@ export const LoginPage = (props: PropType) => {
             setError("")
             dispatch(setLoginStatus({ isUserLoggedIn: true }))
             dispatch(setCurrentUser(response))
+            navigate("/home")
         }
     }
 
@@ -102,8 +105,11 @@ export const LoginPage = (props: PropType) => {
             setError("")
             dispatch(setLoginStatus({ isUserLoggedIn: true }))
             dispatch(setCurrentUser(response))
+            navigate("/home")
         }
     }
+
+
     return (
         <div className='login__wrapper'>
             <div className='login__box'>
@@ -194,11 +200,11 @@ export const LoginPage = (props: PropType) => {
                     }
                     {props.formType === "login" ?
                         <div className="demo__buttons">
-                            <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleDemoClick(e, "admin")}
+                            <button type="button" onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleDemoClick(e, "admin")}
                                 className="demo__button">
                                 Demo Admin
                             </button>
-                            <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleDemoClick(e, "user")}
+                            <button type="button" onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleDemoClick(e, "user")}
                                 className="demo__button">
                                 Demo User
                             </button>
