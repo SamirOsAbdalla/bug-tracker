@@ -155,6 +155,7 @@ export const LoginPage = (props: PropType) => {
                     <div className="input__box">
                         <AiOutlineMail className='login__icon' />
                         <input
+                            aria-label="email"
                             value={email}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                                 handleInputChange(e, "email")}
@@ -174,7 +175,7 @@ export const LoginPage = (props: PropType) => {
                             placeholder="Password"
                             required />
                     </div>
-                    <button type="submit" className="login__button">
+                    <button aria-label="loginbutton" type="submit" className="login__button">
                         {props.formType === "login" ? "Login" : "Signup"}
                     </button>
                     {props.formType === "login" ?
@@ -193,10 +194,12 @@ export const LoginPage = (props: PropType) => {
                     }
                     {props.formType === "login" ?
                         <div className="demo__buttons">
-                            <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleDemoClick(e, "admin")} className="demo__button">
+                            <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleDemoClick(e, "admin")}
+                                className="demo__button">
                                 Demo Admin
                             </button>
-                            <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleDemoClick(e, "user")} className="demo__button">
+                            <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleDemoClick(e, "user")}
+                                className="demo__button">
                                 Demo User
                             </button>
                         </div> :

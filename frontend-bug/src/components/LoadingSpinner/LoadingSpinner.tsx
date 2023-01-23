@@ -5,6 +5,6 @@ import React from 'react'
 
 export const LoadingSpinner = () => {
     return (
-        <div className="loading__wrapper"></div>
+        <div aria-label="loadingspinner" className="loading__wrapper"></div>
     )
 }
